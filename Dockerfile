@@ -20,6 +20,7 @@ ENV PATH ${PATH}:${CIQ_HOME}
 
 USER root
 RUN apt-get clean
+RUN mkdir /home/ciq && chown ciq /home/ciq
 
 USER ciq
 WORKDIR /home/ciq
