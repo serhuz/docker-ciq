@@ -1,5 +1,8 @@
 FROM azul/zulu-openjdk:8
 
+LABEL com.circleci.preserve-entrypoint=true
+ENTRYPOINT /bin/bash
+
 RUN apt-get update -y \
     && apt-get -qqy install unzip wget git ssh tar gzip ca-certificates
 
@@ -11,7 +14,7 @@ USER ciq
 # Download and unzip
 RUN mkdir /opt/ciq
 RUN cd /opt \
-    && wget -q http://developer.garmin.com/downloads/connect-iq/sdks/connectiq-sdk-lin-3.0.6-2018-11-27-33ec0d6.zip -O ciq.zip \
+    && wget -q https://developer.garmin.com/downloads/connect-iq/sdks/connectiq-sdk-lin-3.0.7-2018-12-17-efeb3e3.zip -O ciq.zip \
     && unzip ciq.zip -d ciq \
     && rm -f ciq.zip
 
@@ -25,6 +28,3 @@ RUN mkdir /home/ciq && chown ciq /home/ciq
 USER ciq
 WORKDIR /home/ciq
 VOLUME ["/home/ciq"]
-
-LABEL com.circleci.preserve-entrypoint=true
-ENTRYPOINT /bin/bash
