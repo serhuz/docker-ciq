@@ -15,7 +15,7 @@ USER ciq
 RUN mkdir /opt/ciq
 RUN cd /opt \
     && wget -q \
-    https://developer.garmin.com/downloads/connect-iq/sdks/connectiq-sdk-lin-3.1.3-2019-09-06-c7a130bdb.zip \
+    https://developer.garmin.com/downloads/connect-iq/sdks/connectiq-sdk-lin-3.1.4-2019-09-17-f1e7e9687.zip \
     -O ciq.zip \
     && unzip ciq.zip -d ciq \
     && rm -f ciq.zip
