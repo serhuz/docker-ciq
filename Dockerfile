@@ -11,18 +11,18 @@ RUN useradd -u 1000 -M -s /bin/bash ciq
 RUN mkdir /opt/ciq && chown 1000 /opt/ciq
 RUN mkdir /home/ciq && chown 1000 /home/ciq
 
+ENV CIQ_HOME /opt/ciq/bin
+ENV PATH ${PATH}:${CIQ_HOME}
+
 USER ciq
 
 # Download and unzip
 RUN cd /home/ciq \
     && wget -q \
-    https://developer.garmin.com/downloads/connect-iq/sdks/connectiq-sdk-lin-3.1.6-2019-10-23-2de4665c6.zip \
+    https://developer.garmin.com/downloads/connect-iq/sdks/connectiq-sdk-lin-3.1.7-2020-01-23-a3869d977.zip \
     -O ciq.zip \
     && unzip ciq.zip -d /opt/ciq \
     && rm -f ciq.zip
-
-ENV CIQ_HOME /opt/ciq/bin
-ENV PATH ${PATH}:${CIQ_HOME}
 
 WORKDIR /home/ciq
 VOLUME ["/home/ciq"]
